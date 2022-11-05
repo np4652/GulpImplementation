@@ -1,0 +1,11 @@
+﻿{
+  "version": "0.1.0",
+  "tasks": [
+    {
+      "taskName": "startup",
+      "command": "gulp",
+      "args": [ "startup" ],
+      "isShellCommand": true
+    }
+  ]
+}
