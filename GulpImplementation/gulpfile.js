@@ -39,7 +39,20 @@ gulp.task("dist_lib", async function () {
 })
 
 
+var destPPath = './wwwroot/plugins';
 var destPath = './wwwroot/lib/min';
+gulp.task('minify-plugin', function () {
+    return gulp.src([
+        'node_modules/jquery/dist/jquery.js',
+        'wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js'
+    ])
+        .pipe(concat('libs.min.js'))
+        .pipe(babel({ presets: ['@babel/preset-env'] }))
+        .pipe(gulp.dest(destPPath))
+        .pipe(uglify())
+        .pipe(gulp.dest(destPPath));
+});
+
 gulp.task('minify-js', function () {
     return gulp.src([
         'wwwroot/js/*.js',
