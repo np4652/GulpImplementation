@@ -4,7 +4,8 @@ var gulp = require("gulp"),
     rimraf = require("rimraf"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
+    uglify = require("gulp-uglify"),
+    babel = require('gulp-babel');
 
 var webroot = "./wwwroot/";
 
@@ -41,9 +42,10 @@ gulp.task("dist_lib", async function () {
 var destPath = './wwwroot/lib/min';
 gulp.task('minify-js', function () {
     return gulp.src([
-        'node_modules/Jquery/**/jquery.js',
+        'wwwroot/js/*.js',
     ])
         .pipe(concat('libs.js'))
+        .pipe(babel({ presets: ['@babel/preset-env'] })) 
         .pipe(gulp.dest(destPath))
         .pipe(uglify())
         .pipe(gulp.dest(destPath));
